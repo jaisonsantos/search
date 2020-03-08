@@ -1,8 +1,8 @@
 package org.test.module.search.bootstrap;
 
 
-import org.test.module.search.model.CriteriaModel;
-import org.test.module.search.model.LookupModel;
+import org.test.module.search.model.Criteria;
+import org.test.module.search.model.Searchable;
 import org.test.module.search.model.SearchableField;
 import org.test.module.search.repository.CriteriaRepository;
 import org.test.module.search.repository.SearchRepository;
@@ -32,6 +32,8 @@ public class DataBaseBootstrap implements ApplicationListener<ContextRefreshedEv
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+        criteriaRepository.deleteAll();
+        searchRepository.deleteAll();
 
         criteriaRepository.saveAll(getCriteria());
         searchRepository.saveAll(getSearch());
@@ -39,24 +41,30 @@ public class DataBaseBootstrap implements ApplicationListener<ContextRefreshedEv
         LOGGER.debug("Loading Bootstrap Data");
     }
 
-    private List<LookupModel> getSearch() {
-        List<LookupModel> searchables = new ArrayList<>();
-        LookupModel s = new LookupModel();
-        s.addField(new SearchableField("name", "Jordi"));
-        s.addField(new SearchableField("position", "Solution Architect"));
-        s.addField(new SearchableField("birthday", LocalDate.of(1976, 3, 14)));
-        searchables.add(s);
-        return searchables;
+    private List<Searchable> getSearch() {
+        List<Searchable> searchableList = new ArrayList<>();
+        Searchable s = new Searchable();
+        s.addField("name-Jordi");
+        s.addField("position-Solution Architect");
+        s.addField("birthday-" + LocalDate.of(1976, 3, 14));
+
+
+        //s.addField(new SearchableField("name", "Jordi"));
+        //s.addField(new SearchableField("position", "Solution Architect"));
+        //s.addField(new SearchableField("birthday", LocalDate.of(1976, 3, 14)));
+
+        searchableList.add(s);
+        return searchableList;
     }
 
-    private List<CriteriaModel> getCriteria() {
-        List<CriteriaModel> criterias = new ArrayList<>();
+    private List<Criteria> getCriteria() {
+        List<Criteria> criteriaList = new ArrayList<>();
 
-        CriteriaModel criteria = new CriteriaModel();
+        Criteria criteria = new Criteria();
         criteria.setModule("DBH_Test");
         criteria.setFieldNames(Arrays.asList("name", "position", "birthday"));
-        criterias.add(criteria);
+        criteriaList.add(criteria);
 
-        return criterias;
+        return criteriaList;
     }
 }

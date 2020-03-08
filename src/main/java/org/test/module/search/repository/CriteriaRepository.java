@@ -1,12 +1,12 @@
 package org.test.module.search.repository;
 
-import org.test.module.search.model.CriteriaModel;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
+import org.test.module.search.model.Criteria;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
 @Repository
-public interface CriteriaRepository extends CrudRepository<CriteriaModel, UUID> {
+public interface CriteriaRepository extends ElasticsearchRepository<Criteria, String> {
 
 }

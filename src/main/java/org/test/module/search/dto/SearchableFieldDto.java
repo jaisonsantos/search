@@ -28,9 +28,9 @@ public class SearchableFieldDto {
         this.value = value;
     }
 
-    public SearchableFieldDto(SearchableField model){
+/*    public SearchableFieldDto(SearchableField model){
         this.key = model.getKey();
         this.value = model.getValue();
-    }
+    }*/
 
 }

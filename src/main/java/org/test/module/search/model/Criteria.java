@@ -1,21 +1,27 @@
 package org.test.module.search.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.util.List;
 import java.util.UUID;
 
-@Document
-public class CriteriaModel {
+@Document(indexName = "criteria", type = "criteria")
+public class Criteria {
 
     @Id
-    private UUID uuid = UUID.randomUUID();
+    private String uuid = UUID.randomUUID().toString();
+
     private String module;
+
     private List<String> fieldNames;
 
-    public UUID getUuid() {
+    public String getUuid() {
         return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public String getModule() {
@@ -33,11 +39,5 @@ public class CriteriaModel {
     public void setFieldNames(List<String> fieldNames) {
         this.fieldNames = fieldNames;
     }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-
 
 }

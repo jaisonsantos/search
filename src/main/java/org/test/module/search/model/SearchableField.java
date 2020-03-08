@@ -4,7 +4,7 @@ import org.test.module.search.dto.SearchableFieldDto;
 
 public class SearchableField {
 
-    private String key;
+/*    private String key;
     private Object value;
 
     public SearchableField(){}
@@ -33,7 +33,7 @@ public class SearchableField {
 
     public void setValue(Object value) {
         this.value = value;
-    }
+    }*/
 
 
 }
